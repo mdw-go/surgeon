@@ -5,10 +5,9 @@ import "bytes"
 // Textectomy facilitates trimming away parts of a text that the caller deems superfluous.
 type Textectomy struct{ Text []byte }
 
-func clamp(lo, n, hi int) int {
-	return max(lo, min(n, hi))
+func (this *Textectomy) clamp(n int) int {
+	return max(0, min(n, len(this.Text)))
 }
-
 func (this *Textectomy) update(b []byte) (modified bool) {
 	if bytes.Equal(this.Text, b) {
 		return false
@@ -49,12 +48,12 @@ func (this *Textectomy) CutBefore(s string) bool {
 
 // DiscardNLeft discards up to n bytes from the beginning of the underlying bytes or until none remain.
 func (this *Textectomy) DiscardNLeft(n int) bool {
-	return this.update(this.Text[clamp(0, n, len(this.Text)):])
+	return this.update(this.Text[this.clamp(n):])
 }
 
 // DiscardNRight discards up to n bytes from the
 func (this *Textectomy) DiscardNRight(n int) bool {
-	return this.update(this.Text[:len(this.Text)-clamp(0, n, len(this.Text))])
+	return this.update(this.Text[:len(this.Text)-this.clamp(n)])
 }
 
 // TrimLeft trims all characters in set from the beginning of the underlying bytes.
