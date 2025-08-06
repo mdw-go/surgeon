@@ -7,7 +7,7 @@ import (
 )
 
 func Test(t *testing.T) {
-	operation := &Stringectomy{Text: []byte("The quick brown fox jumps over the lazy dog.")}
+	operation := &Textectomy{Text: []byte("The quick brown fox jumps over the lazy dog.")}
 
 	should.So(t, operation.Contains("jumps over"), should.BeTrue)
 	should.So(t, operation.Contains("JUMPS OVER"), should.BeFalse)
