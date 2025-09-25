@@ -5,6 +5,11 @@ import "bytes"
 // Textectomy facilitates trimming away parts of a text that the caller deems superfluous.
 type Textectomy struct{ Text []byte }
 
+// String implements fmt.Stringer
+func (this *Textectomy) String() string {
+	return string(this.Text)
+}
+
 func (this *Textectomy) clamp(n int) int {
 	return max(0, min(n, len(this.Text)))
 }
