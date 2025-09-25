@@ -12,6 +12,7 @@ func Test(t *testing.T) {
 	should.So(t, operation.Contains("jumps over"), should.BeTrue)
 	should.So(t, operation.Contains("JUMPS OVER"), should.BeFalse)
 
+	should.So(t, operation.HasPrefix("The"), should.BeTrue)
 	should.So(t, operation.CutPrefix("The"), should.BeTrue)
 	should.So(t, operation.CutPrefix("The"), should.BeFalse)
 	should.So(t, string(operation.Text), should.Equal, " quick brown fox jumps over the lazy dog.")
@@ -46,6 +47,7 @@ func Test(t *testing.T) {
 	should.So(t, operation.CutBefore("fx"), should.BeFalse)
 	should.So(t, string(operation.Text), should.Equal, " jumps ver ")
 
+	should.So(t, operation.HasSuffix("ver "), should.BeTrue)
 	should.So(t, operation.CutSuffix("ver "), should.BeTrue)
 	should.So(t, operation.CutSuffix("ver "), should.BeFalse)
 	should.So(t, string(operation.Text), should.Equal, " jumps ")

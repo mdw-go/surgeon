@@ -21,6 +21,16 @@ func (this *Textectomy) Contains(s string) bool {
 	return bytes.Contains(this.Text, []byte(s))
 }
 
+// HasPrefix checks whether []byte(s) is a prefix of the underlying bytes.
+func (this *Textectomy) HasPrefix(s string) bool {
+	return bytes.HasPrefix(this.Text, []byte(s))
+}
+
+// HasSuffix checks whether []byte(s) is a prefix of the underlying bytes.
+func (this *Textectomy) HasSuffix(s string) bool {
+	return bytes.HasSuffix(this.Text, []byte(s))
+}
+
 // Excise removes the first n occurrences of sub from the underlying bytes.
 func (this *Textectomy) Excise(sub string, n int) bool {
 	return this.update(bytes.Replace(this.Text, []byte(sub), []byte(""), n))
